@@ -19,7 +19,7 @@ You need to prepare sheet, header for the sheet, and data for the sheet.
 package main
 
 func main() {
-	report := builder.NewExcelReport()
+	report := exceller.NewExcelReport()
 
 	sheetName := "Bio"
 	sheetHeader := []string{
