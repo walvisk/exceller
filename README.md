@@ -42,3 +42,6 @@ func main() {
 - [ ] Give screenshoot of excel on writing report
 - [ ] Error Handling
 - [ ] Provide test
+- [ ] Make sure file is close
+- [ ] Support header more than 1 row and more than Z
+- [ ] BuilAndExport() can accept path as exported path
