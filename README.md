@@ -37,11 +37,15 @@ func main() {
 	report.Build()
 }
 ```
+
+It will produce file excel below
+![Example](./example.png?raw=true "Example Report")
 ### Todo
 
-- [ ] Give screenshoot of excel on writing report
+- [x] Give screenshoot of excel on writing report
 - [ ] Error Handling
 - [ ] Provide test
 - [ ] Make sure file is close
-- [ ] Support header more than 1 row and more than Z
+- [ ] Support header more than 1 row ?
+- [x] Support header more than Z column
 - [ ] BuilAndExport() can accept path as exported path

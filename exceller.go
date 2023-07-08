@@ -58,38 +58,52 @@ func (rb *Report) Build() {
 	rb.write()
 }
 
-func (rb *Report) BuildAndExport() {
+func (rb *Report) BuildAndExport() error {
 	rb.write()
 
 	if err := rb.File.SaveAs("Book1.xlsx"); err != nil {
-		fmt.Println(err)
+		return err
 	}
+
+	return nil
 }
 
 func (rb *Report) write() {
 	for _, sheet := range rb.sheets {
-		x := 'A'
-		y := 1
-
 		headers := sheet.header
-		for _, header := range headers {
-			cell := fmt.Sprintf("%c%d", x, y)
+		y := 1
+		for i, header := range headers {
+			x := rb.generateColumnLetter(i + 1)
+			cell := fmt.Sprintf("%s%d", x, y)
+
 			rb.File.SetCellValue(sheet.name, cell, header)
-			x = x + 1
 		}
 
 		y = y + 1
-		x = 'A'
 
 		for _, outer := range sheet.body {
-			for _, inner := range outer {
-				cell := fmt.Sprintf("%c%d", x, y)
-				rb.File.SetCellValue(sheet.name, cell, inner)
-				x = x + 1
-			}
+			for i, inner := range outer {
+				x := rb.generateColumnLetter(i + 1)
+				cell := fmt.Sprintf("%s%d", x, y)
 
+				rb.File.SetCellValue(sheet.name, cell, inner)
+			}
 			y = y + 1
-			x = 'A'
 		}
 	}
+}
+
+func (rb *Report) generateColumnLetter(n int) string {
+	if n <= 0 {
+		return ""
+	}
+
+	column := ""
+	for n > 0 {
+		n--
+		column = fmt.Sprintf("%c%s", 'A'+n%26, column)
+		n /= 26
+	}
+
+	return column
 }
