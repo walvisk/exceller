@@ -45,7 +45,8 @@ It will produce file excel below
 - [x] Give screenshoot of excel on writing report
 - [ ] Error Handling
 - [ ] Provide test
-- [ ] Make sure file is close
+- [X] Make sure file is close
 - [ ] Support header more than 1 row ?
 - [x] Support header more than Z column
 - [ ] BuilAndExport() can accept path as exported path
+- [ ] Build github action (keep in mind for cost also)

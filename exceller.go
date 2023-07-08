@@ -19,15 +19,19 @@ type Report struct {
 
 func NewExcelReport() *Report {
 	f := excelize.NewFile()
-	defer func() {
-		if err := f.Close(); err != nil {
-			fmt.Println(err)
-		}
-	}()
 
 	return &Report{
 		File: f,
 	}
+}
+
+func (rb *Report) Close() error {
+	if err := rb.File.Close(); err != nil {
+		fmt.Println(err)
+		return err
+	}
+
+	return nil
 }
 
 func (rb *Report) AddSheet(sheetname string) *sheet {

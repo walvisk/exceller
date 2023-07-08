@@ -20,6 +20,7 @@ func TestBuildReport(t *testing.T) {
 	}
 
 	report := NewExcelReport()
+	defer report.Close()
 	report.AddSheet(sheetName).AddHeader(sheetHeader).AddBody(sheetData)
 	err = report.BuildAndExport()
 	if err != nil {
@@ -31,6 +32,7 @@ func TestBuildReportEmpty(t *testing.T) {
 	var err error
 
 	report := NewExcelReport()
+	defer report.Close()
 	err = report.BuildAndExport()
 	if err != nil {
 		t.Error(err)
@@ -61,6 +63,7 @@ func TestBuildReport_HeaderBeyondZ(t *testing.T) {
 	}
 
 	report := NewExcelReport()
+	defer report.Close()
 	report.AddSheet("Headers").AddHeader(sheetHeader).AddBody(sheetBody)
 	err = report.BuildAndExport()
 	if err != nil {
