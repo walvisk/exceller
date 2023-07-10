@@ -41,12 +41,3 @@ func main() {
 
 It will produce file excel below
 ![Example](./example.png?raw=true "Example Report")
-### Todo
-
-- [x] Give screenshoot of excel on writing report
-- [x] Provide test
-- [X] Make sure file is close
-- [ ] Support header more than 1 row ?
-- [x] Support header more than Z column
-- [ ] BuilAndExport() can accept path as exported path
-- [ ] Build github action (keep in mind for cost also)
