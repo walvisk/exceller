@@ -70,3 +70,21 @@ func TestBuildReport_HeaderBeyondZ(t *testing.T) {
 		t.Error(err)
 	}
 }
+
+func TestBuildReport_JustBody(t *testing.T) {
+	var err error
+
+	sheetData := [][]string{
+		{"1", "John", "20"},
+		{"2", "Ken", "20"},
+		{"3", "Yuri", "20"},
+	}
+
+	report := NewExcelReport()
+	defer report.Close()
+	report.AddSheet("Sheet 1").AddBody(sheetData)
+	err = report.BuildAndExport()
+	if err != nil {
+		t.Error(err)
+	}
+}

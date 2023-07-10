@@ -58,20 +58,23 @@ func (sheet *sheet) AddBody(data [][]string) *sheet {
 	return sheet
 }
 
+// Build() provides writing to excelize file
 func (rb *Report) Build() {
 	rb.write()
 }
 
+// BuildAndExport provides writing the excelize to local file for debugging purposes
 func (rb *Report) BuildAndExport() error {
 	rb.write()
 
-	if err := rb.File.SaveAs("Book1.xlsx"); err != nil {
+	if err := rb.File.SaveAs("Debug.xlsx"); err != nil {
 		return err
 	}
 
 	return nil
 }
 
+// write provides the writing process to exelize file
 func (rb *Report) write() {
 	for _, sheet := range rb.sheets {
 		headers := sheet.header
@@ -83,7 +86,9 @@ func (rb *Report) write() {
 			rb.File.SetCellValue(sheet.name, cell, header)
 		}
 
-		y = y + 1
+		if len(headers) > 0 {
+			y = y + 1
+		}
 
 		for _, outer := range sheet.body {
 			for i, inner := range outer {

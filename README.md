@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Exceller is library written in Go providing abstraction level for writing excel report based on [Excelize](https://github.com/qax-os/excelize)
+Exceller is library written in Go providing abstraction level for writing simple excel report based on [Excelize](https://github.com/qax-os/excelize)
 
 ## Usage
 
@@ -20,6 +20,7 @@ package main
 
 func main() {
 	report := exceller.NewExcelReport()
+	defer report.Close()
 
 	sheetName := "Bio"
 	sheetHeader := []string{
@@ -43,8 +44,7 @@ It will produce file excel below
 ### Todo
 
 - [x] Give screenshoot of excel on writing report
-- [ ] Error Handling
-- [ ] Provide test
+- [x] Provide test
 - [X] Make sure file is close
 - [ ] Support header more than 1 row ?
 - [x] Support header more than Z column
