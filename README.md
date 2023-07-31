@@ -19,7 +19,8 @@ You need to prepare sheet, header for the sheet, and data for the sheet.
 package main
 
 func main() {
-	report := exceller.NewExcelReport()
+	f := excelize.NewFile()
+	report := NewExcelReport(f)
 	defer report.Close()
 
 	sheetName := "Bio"
