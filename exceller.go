@@ -17,9 +17,7 @@ type Report struct {
 	sheets []*sheet
 }
 
-func NewExcelReport() *Report {
-	f := excelize.NewFile()
-
+func NewExcelReport(f *excelize.File) *Report {
 	return &Report{
 		File: f,
 	}

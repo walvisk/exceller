@@ -3,6 +3,8 @@ package exceller
 import (
 	"fmt"
 	"testing"
+
+	"github.com/xuri/excelize/v2"
 )
 
 func TestBuildReport(t *testing.T) {
@@ -19,7 +21,8 @@ func TestBuildReport(t *testing.T) {
 		{"3", "Yuri", "20"},
 	}
 
-	report := NewExcelReport()
+	f := excelize.NewFile()
+	report := NewExcelReport(f)
 	defer report.Close()
 	report.AddSheet(sheetName).AddHeader(sheetHeader).AddBody(sheetData)
 	err = report.BuildAndExport()
@@ -30,8 +33,8 @@ func TestBuildReport(t *testing.T) {
 
 func TestBuildReportEmpty(t *testing.T) {
 	var err error
-
-	report := NewExcelReport()
+	f := excelize.NewFile()
+	report := NewExcelReport(f)
 	defer report.Close()
 	err = report.BuildAndExport()
 	if err != nil {
@@ -61,8 +64,8 @@ func TestBuildReport_HeaderBeyondZ(t *testing.T) {
 
 		sheetRow = []string{}
 	}
-
-	report := NewExcelReport()
+	f := excelize.NewFile()
+	report := NewExcelReport(f)
 	defer report.Close()
 	report.AddSheet("Headers").AddHeader(sheetHeader).AddBody(sheetBody)
 	err = report.BuildAndExport()
@@ -79,8 +82,8 @@ func TestBuildReport_JustBody(t *testing.T) {
 		{"2", "Ken", "20"},
 		{"3", "Yuri", "20"},
 	}
-
-	report := NewExcelReport()
+	f := excelize.NewFile()
+	report := NewExcelReport(f)
 	defer report.Close()
 	report.AddSheet("Sheet 1").AddBody(sheetData)
 	err = report.BuildAndExport()
