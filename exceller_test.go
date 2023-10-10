@@ -13,12 +13,12 @@ func TestBuildReport(t *testing.T) {
 	sheetHeader := []string{
 		"No",
 		"Name",
-		"Age",
+		"Income",
 	}
-	sheetData := [][]string{
-		{"1", "John", "20"},
-		{"2", "Ken", "20"},
-		{"3", "Yuri", "20"},
+	sheetData := [][]any{
+		{"1", "John", 1000},
+		{"2", "Ken", float64(2000.35)},
+		{"3", "Yuri", "1000"},
 	}
 
 	f := excelize.NewFile()
@@ -46,8 +46,8 @@ func TestBuildReport_HeaderBeyondZ(t *testing.T) {
 	var (
 		err         error
 		sheetHeader []string
-		sheetRow    []string
-		sheetBody   [][]string
+		sheetRow    []any
+		sheetBody   [][]any
 	)
 
 	for i := 0; i < 40; i++ {
@@ -62,7 +62,7 @@ func TestBuildReport_HeaderBeyondZ(t *testing.T) {
 		}
 		sheetBody = append(sheetBody, sheetRow)
 
-		sheetRow = []string{}
+		sheetRow = []any{}
 	}
 	f := excelize.NewFile()
 	report := NewExcelReport(f)
@@ -77,7 +77,7 @@ func TestBuildReport_HeaderBeyondZ(t *testing.T) {
 func TestBuildReport_JustBody(t *testing.T) {
 	var err error
 
-	sheetData := [][]string{
+	sheetData := [][]any{
 		{"1", "John", "20"},
 		{"2", "Ken", "20"},
 		{"3", "Yuri", "20"},

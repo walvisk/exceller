@@ -29,8 +29,8 @@ func main() {
 		"Name",
 		"Age",
 	}
-	sheetData := [][]string{
-		{"1", "John", "20"},
+	sheetData := [][]any{
+		{"1", "John", 20},
 		{"2", "Ken", "20"},
 		{"3", "Yuri", "20"},
 	}

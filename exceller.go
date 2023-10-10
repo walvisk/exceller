@@ -9,7 +9,7 @@ import (
 type sheet struct {
 	name   string
 	header []string
-	body   [][]string
+	body   [][]any
 }
 
 type Report struct {
@@ -25,7 +25,6 @@ func NewExcelReport(f *excelize.File) *Report {
 
 func (rb *Report) Close() error {
 	if err := rb.File.Close(); err != nil {
-		fmt.Println(err)
 		return err
 	}
 
@@ -50,7 +49,7 @@ func (sheet *sheet) AddHeader(headers []string) *sheet {
 	return sheet
 }
 
-func (sheet *sheet) AddBody(data [][]string) *sheet {
+func (sheet *sheet) AddBody(data [][]any) *sheet {
 	sheet.body = data
 
 	return sheet
